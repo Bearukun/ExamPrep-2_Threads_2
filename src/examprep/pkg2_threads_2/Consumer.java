@@ -32,6 +32,8 @@ public class Consumer implements Runnable {
             System.out.println(temp);
 
         }
+        
+        System.out.println("Total: " + total );
 
     }
     

@@ -18,9 +18,14 @@ public class Producer implements Runnable {
 
     public void run() {
 
+        //While - as long as there is remaining numbers 
         while (!s1.isEmpty()) {
 
+            //Retrieves and Removes the top number from the BlockingQueue. Return Null is there is none
             Long temp = s1.poll();
+            
+            //start Timer
+            long lStartTime = System.nanoTime();
 
             if (temp == null) {
 
@@ -29,11 +34,22 @@ public class Producer implements Runnable {
             }
 
             s2.add(fibonacci(temp));
-
+            
+            //End Timer
+            long lEndTime = System.nanoTime();
+            
+            //Deduct elapsedtime
+            long output = lEndTime - lStartTime;
+            
+            //Print elapsedtime in miliseconds
+            System.out.println("Thread: " + threadId + " Elapsed time in milliseconds: " + output / 1000000);
         }
 
         ExamPrep2_Threads_2.threadsRunning[threadId] = true;
 
+        
+        
+        
     }
 
     private long fibonacci(long n) {
